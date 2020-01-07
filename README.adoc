@@ -1,0 +1,89 @@
+= asciidoctor-block-switch
+:icons: font
+:source-highlighter: highlightjs
+:highlightjs-theme: idea
+:hardbreaks:
+:sectlinks:
+:sectnums:
+:stem:
+:tabsize: 4
+
+== Movitation
+
+[.lead]
+Provide block switches for asciidoctor (only works in HTML).
+Inspired from https://github.com/spring-io/spring-asciidoctor-extensions[spring-asciidoctor-extensions, window="_blank"].
+
+== Document
+
+=== Clone Repository
+
+[source,bash]
+----
+git clone https://github.com/jjyyjjyy/asciidoctor-block-switch.git
+cd asciidoctor-block-switch
+----
+
+=== Package
+
+[source,bash]
+----
+mvn clean package
+----
+
+=== Import
+
+[source,xml]
+.pom.xml
+----
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>2.0.0-RC.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>io.github.jjyy</groupId>
+                        <artifactId>asciidoctor-block-switch</artifactId>
+                        <version>1.0.0</version>
+                        <systemPath>${project.basedir}/lib/asciidoctor-block-switch-1.0.0.jar</systemPath>
+                        <scope>system</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+----
+
+=== use in adoc
+
+[source]
+....
+
+[source, role="primary"] <1>
+.Maven
+----
+<dependency>
+    <groupId>com.example</groupId>
+    <artifactId>some-library</artifactId>
+    <version>1.2.3</version>
+</dependency>
+----
+
+[source, role="secondary-a"] <2>
+.Gradle
+----
+compile 'com.example:some-library:1.2.3
+----
+
+[source, role="secondary-b"]
+.Ivy
+----
+<dependency org="com.example" name="some-library" rev="1.2.3"/>
+----
+
+....
+
+<1> ClassName of the first block must be *primary*.
+<2> ClassName of the rest blockes must start with *secondary*.
