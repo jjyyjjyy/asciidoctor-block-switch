@@ -3,7 +3,6 @@ package io.github.jjyy.processor;
 import org.asciidoctor.ast.Document;
 import org.asciidoctor.extension.DocinfoProcessor;
 
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
@@ -23,8 +22,7 @@ public class BlockSwitchProcessor extends DocinfoProcessor {
     }
 
     private String readResource(String name) {
-        Reader reader = new InputStreamReader(getClass().getResourceAsStream(name));
-        try {
+        try (Reader reader = new InputStreamReader(getClass().getResourceAsStream(name))) {
             StringWriter writer = new StringWriter();
             char[] buffer = new char[8192];
             int read;
@@ -34,12 +32,6 @@ public class BlockSwitchProcessor extends DocinfoProcessor {
             return writer.toString();
         } catch (Exception ex) {
             throw new IllegalStateException("Failed to read '" + name + "'", ex);
-        } finally {
-            try {
-                reader.close();
-            } catch (IOException ex) {
-                // Continue
-            }
         }
     }
 }

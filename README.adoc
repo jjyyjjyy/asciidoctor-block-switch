@@ -8,13 +8,13 @@
 :stem:
 :tabsize: 4
 
-== Movitation
+== Motivation
 
 [.lead]
 Provide block switches for asciidoctor (only works in HTML).
 Inspired from https://github.com/spring-io/spring-asciidoctor-extensions[spring-asciidoctor-extensions, window="_blank"].
 
-== Document
+== Usage
 
 === Clone Repository
 
@@ -31,6 +31,10 @@ cd asciidoctor-block-switch
 mvn clean package
 ----
 
+=== Copy
+
+Copy the generated jar file into your project, eg: `lib` directory .
+
 === Import
 
 [source,xml]
@@ -41,13 +45,13 @@ mvn clean package
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>2.0.0-RC.1</version>
+                <version>2.1.0</version>
                 <dependencies>
                     <dependency>
                         <groupId>io.github.jjyy</groupId>
                         <artifactId>asciidoctor-block-switch</artifactId>
-                        <version>1.0.0</version>
-                        <systemPath>${project.basedir}/lib/asciidoctor-block-switch-1.0.0.jar</systemPath>
+                        <version>1.1.0</version>
+                        <systemPath>${project.basedir}/lib/asciidoctor-block-switch-1.1.0.jar</systemPath>
                         <scope>system</scope>
                     </dependency>
                 </dependencies>
@@ -77,7 +81,7 @@ mvn clean package
 compile 'com.example:some-library:1.2.3
 ----
 
-[source, role="secondary-b"]
+[source, role="secondary-b"] <3>
 .Ivy
 ----
 <dependency org="com.example" name="some-library" rev="1.2.3"/>
@@ -86,4 +90,4 @@ compile 'com.example:some-library:1.2.3
 ....
 
 <1> ClassName of the first block must be *primary*.
-<2> ClassName of the rest blockes must start with *secondary*.
+<2> ClassName of the rest blocks must start with *secondary*.
